@@ -20,7 +20,7 @@
           />
         </template>
         <!--PVE DESCRIPTION-->
-          <section v-if="weaponData.weapon.pveDescription" id="pvpDescription">
+          <section v-if="weaponData.weapon.pveDescription" id="pveDescription">
             <h2>PVE Description</h2>
           <p> {{weaponData.weapon.pveDescription.text}} </p>
           </section>
