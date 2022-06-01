@@ -77,7 +77,7 @@
               </div>
             </div>
             <!--ORIGIN TRAIT-->
-            <div class="row">
+            <div v-if="weaponData.weapon.originTrait" class="row">
               <div class="col-2">
                 <h2>Origin Trait</h2>
                 <img class="perk-icon"
