@@ -3,27 +3,29 @@
     <div v-if="weaponData && weaponData.weapon" class="weapon">
       <n-card :title="weaponData.weapon.name">
         <template #header-extra>
-          <img class="source-icon" :src="weaponData.weapon.source.soureIcon.url"
+          <img v-if="weaponData.weapon.source"
+          class="source-icon" :src="weaponData.weapon.source.soureIcon.url"
           :title="'Source: ' + weaponData.weapon.source.sourceTitle"
           :alt="'Source: ' + weaponData.weapon.source.sourceTitle" />
 
-          <img class="damagetype-icon" :src="getDamageIcon(weaponData.weapon.element)"
+          <img v-if="weaponData.weapon.element"
+          class="damagetype-icon" :src="getDamageIcon(weaponData.weapon.element)"
           :title="'Damage Type: '+ weaponData.weapon.element"
           :alt="'Damage Type: '+ weaponData.weapon.element" />
         </template>
         <template #cover>
-          <img
+          <img v-if="weaponData.weapon.image"
             :src="weaponData.weapon.image.url"
             :alt="'Thumbnail of ' + weaponData.weapon.name"
           />
         </template>
         <!--PVE DESCRIPTION-->
-          <section id="pvpDescription">
+          <section v-if="weaponData.weapon.pveDescription" id="pvpDescription">
             <h2>PVE Description</h2>
           <p> {{weaponData.weapon.pveDescription.text}} </p>
           </section>
           <!--Recommended PVE Perks-->
-          <section id="pvePerks">
+          <section v-if="weaponData.weapon.pvePerks" id="pvePerks">
             <h2>Recommended PVE Perks</h2>
           <div>
             <!--BARRELS-->
@@ -90,7 +92,7 @@
           </div>
           </section>
           <!--Recommended PVE Godrolls-->
-          <section id="pveGodrolls">
+          <section v-if="weaponData.weapon.pveGodrolls" id="pveGodrolls">
             <h2>PVE Godrolls</h2>
             <div class="roll row"
             v-for="roll in weaponData.weapon.pveGodrolls" :key="roll.perk1.name">
