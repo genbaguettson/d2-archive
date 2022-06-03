@@ -2,10 +2,11 @@ import { createApp, provide, h } from 'vue';
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
 import {
-  create, NCard, NConfigProvider, NSpace,
+  create, NCard, NConfigProvider, NDivider, NSpace,
 } from 'naive-ui';
 import 'vfonts/Lato.css';
 import 'vfonts/FiraCode.css';
+import Markdown from 'vue3-markdown-it';
 import router from './router';
 import App from './App.vue';
 
@@ -29,6 +30,7 @@ const naive = create({
     NConfigProvider,
     NCard,
     NSpace,
+    NDivider,
   ],
 });
 
@@ -40,4 +42,4 @@ const app = createApp({
   render: () => h(App),
 });
 
-app.use(naive).use(router).mount('#app');
+app.use(naive).use(Markdown).use(router).mount('#app');
