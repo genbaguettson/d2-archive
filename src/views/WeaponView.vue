@@ -19,226 +19,28 @@
             :alt="'Thumbnail of ' + weaponData.weapon.name"
           />
         </template>
-        <!--PVE DESCRIPTION-->
-          <section v-if="weaponData.weapon.pveDescription" id="pveDescription">
-            <h2>PVE Description</h2>
-          <p> {{weaponData.weapon.pveDescription.text}} </p>
-          </section>
-          <!--Recommended PVE Perks-->
-          <section v-if="weaponData.weapon.pvePerks" id="pvePerks">
-            <h2>Recommended PVE Perks</h2>
-          <div>
-            <!--BARRELS-->
-            <div class="row">
-              <div class="col-2">
-                <h2>Barrels</h2>
-                <img class="perk-icon" v-for="perk in weaponData.weapon.pvePerks.perk1"
-                :key="perk.name" :src="perk.icon.url" :alt="perk.name"
-                :title="perk.name">
-              </div>
-              <div class="col-2">
-                <h2>Explanation</h2>
-              </div>
-            </div>
-            <!--Magazines-->
-            <div class="row">
-              <div class="col-2">
-                <h2>Magazines</h2>
-                <img class="perk-icon" v-for="perk in weaponData.weapon.pvePerks.perk2"
-                :key="perk.name" :src="perk.icon.url" :alt="perk.name"
-                :title="perk.name">
-              </div>
-              <div class="col-2">
-                <h2>Explanation</h2>
-              </div>
-            </div>
-            <!--3rd-->
-            <div class="row">
-              <div class="col-2">
-                <h2>3rd Perk Slot</h2>
-                <img class="perk-icon" v-for="perk in weaponData.weapon.pvePerks.perk3"
-                :key="perk.name" :src="perk.icon.url" :alt="perk.name"
-                :title="perk.name">
-              </div>
-              <div class="col-2">
-                <h2>Explanation</h2>
-              </div>
-            </div>
-            <!--4th-->
-            <div class="row">
-              <div class="col-2">
-                <h2>4th Perk Slots</h2>
-                <img class="perk-icon" v-for="perk in weaponData.weapon.pvePerks.perk4"
-                :key="perk.name" :src="perk.icon.url" :alt="perk.name"
-                :title="perk.name">
-              </div>
-              <div class="col-2">
-                <h2>Explanation</h2>
-              </div>
-            </div>
-            <!--ORIGIN TRAIT-->
-            <div v-if="weaponData.weapon.originTrait" class="row">
-              <div class="col-2">
-                <h2>Origin Trait</h2>
-                <img class="perk-icon"
-                :src="weaponData.weapon.originTrait.icon.url"
-                :alt="weaponData.weapon.originTrait.name"
-                :title="weaponData.weapon.originTrait.name">
-              </div>
-              <div class="col-2">
-                <h2>Explanation</h2>
-              </div>
-            </div>
-          </div>
-          </section>
-          <!--Recommended PVE Godrolls-->
-          <section v-if="weaponData.weapon.pveGodrolls" id="pveGodrolls">
-            <h2>PVE Godrolls</h2>
-            <div class="roll row"
-            v-for="roll in weaponData.weapon.pveGodrolls" :key="roll.perk1.name">
-            <div class="col-2">
-              <div class="row">
-                <img v-for="indicator in roll.contentIndicators" :key="indicator.icon.url"
-                :src="indicator.icon.url" :alt="indicator.name"
-                :title="indicator.name" class="perk-icon">
-              </div>
-              <hr>
-              <div class="row">
-                <img :src="roll.perk1.icon.url" :alt="roll.perk1.name"
-                :title="roll.perk1.name" class="perk-icon">
-                <img :src="roll.perk2.icon.url" :alt="roll.perk2.name"
-                :title="roll.perk2.name" class="perk-icon">
-                <img :src="roll.perk3.icon.url" :alt="roll.perk3.name"
-                :title="roll.perk3.name" class="perk-icon">
-                <img :src="roll.perk4.icon.url" :alt="roll.perk4.name"
-                :title="roll.perk4.name" class="perk-icon">
-              </div>
-            </div>
-            <div class="col-2">
-              <h3>{{roll.title}}</h3>
-              <p> {{roll.description.text}} </p>
-            </div>
-            </div>
-          </section>
+        <!--PVE-->
+        <GamemodeSection pve="true" :weapon="weaponData.weapon" />
+        <!--PVP-->
+        <GamemodeSection :weapon="weaponData.weapon" />
       </n-card>
     </div>
     <div v-else-if="weaponLoading">Loading...</div>
     <div v-else-if="weaponError">{{ error }}</div>
   </n-space>
+  <div v-if="weaponData && !weaponData.weapon">
+  {{ this.$router.push({ name: 'notFound' }) }}
+  </div>
 </template>
 <script>
 import { useQuery } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
+import GamemodeSection from '../components/Weapon/GamemodeSection.vue';
+import GET_WEAPON_BY_NAME from '../data/queries';
 
 export default {
   props: ['name'],
   setup(props) {
-    const { result, loading, error } = useQuery(gql`
-        query ($name : String!){
-          weapon(where: { name: $name }) {
-            archetype {
-              title
-              rpm
-              frame
-            }
-            name
-            source{
-              soureIcon{
-                url
-              },
-              sourceTitle
-            }
-            element
-            image {
-              url
-              fileName
-            }
-            originTrait {
-              name
-              icon {
-                url
-              }
-            }
-            pveDescription {
-              text
-            }
-            pveGodrolls {
-              ... on PveRoll {
-                title
-                description{text}
-                perk1 {
-                  name,
-                  icon{url}
-                }
-                perk2 {
-                  name,
-                  icon{url}
-                }
-                perk3 {
-                  name,
-                  icon{url}
-                }
-                perk4 {
-                  name,
-                  icon{url}
-                }
-                contentIndicators{name,, icon{url}}
-              }
-            }
-            pveMasterworks {
-              icon {
-                url
-              }
-              masterwork
-            }
-            pvePerks {
-              perk1 {
-                name,
-                icon{url}
-              }
-              perk2 {
-                name,
-                icon{url}
-              }
-              perk3 {
-                name,
-                icon{url}
-              }
-              perk4 {
-                name,
-                icon{url}
-              }
-            }
-            pvpDescription {
-              text
-            }
-            pvpMasterworks {
-              masterwork
-              icon {
-                url
-              }
-            }
-            pvpPerks {
-              perk1 {
-                name,
-                icon{url}
-              }
-              perk2 {
-                name,
-                icon{url}
-              }
-              perk3 {
-                name,
-                icon{url}
-              }
-              perk4 {
-                name,
-                icon{url}
-              }
-            }
-          }
-        }
-      `, { name: props.name });
+    const { result, loading, error } = useQuery(GET_WEAPON_BY_NAME, { name: props.name });
     return {
       weaponData: result,
       weaponLoading: loading,
@@ -258,7 +60,6 @@ export default {
   },
   methods: {
     getDamageIcon(elementType) {
-      console.log(elementType);
       switch (elementType) {
         case 'Solar':
           return this.DMG_IMG_URL.SOLAR;
@@ -273,16 +74,19 @@ export default {
       }
     },
   },
+  components: {
+    GamemodeSection,
+  },
 };
 </script>
 <style>
 .n-card{
   color: white;
   font-family: v-mono, sans-serif;
+  max-width: 800px;
 }
 
 .n-card-cover img {
-  max-width: 700px;
   height: auto;
 }
 
@@ -313,14 +117,24 @@ export default {
 .row {
   width: 100%;
   display: flex;
+   flex-wrap: wrap;
 }
 
 .col-2 {
   width: 50%;
+  min-width: 50%;
 }
 
 .roll {
   margin-bottom: 2em;
+}
+
+.perks .perk-icon, .content-indicator {
+  margin-right: 5px;
+}
+
+.perks:last-child {
+  margin-right: 0px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -332,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 p{
   margin-top: 0;
   padding-top: 0;
-  max-width: 200px;
+  overflow-wrap: break-word;
 }
 hr {
   border-color: white;
