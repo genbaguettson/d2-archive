@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme="darkTheme">
+  <n-config-provider :theme="darkTheme" class="base-background">
     <router-view />
   </n-config-provider>
 </template>
@@ -16,3 +16,5 @@ export default defineComponent({
   },
 });
 </script>
+
+<style src="./styles/app.css" />

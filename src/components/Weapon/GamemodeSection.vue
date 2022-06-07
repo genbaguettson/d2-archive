@@ -1,13 +1,19 @@
 <template>
   <!--DESCRIPTION-->
-  <section v-if="this.description" :id="this.mode.toLowerCase()+'Description'">
+  <section
+    v-if="this.description"
+    :id="this.mode.toLowerCase() + 'Description'"
+  >
     <h2>{{ this.mode }} Description</h2>
-    <Markdown :source="this.description.markdown" />
+    <Markdown
+      :source="this.description.markdown"
+      class="description pad-side-3"
+    />
   </section>
   <!--Recommended Perks-->
-  <section v-if="this.perks" :id="this.mode.toLowerCase()+'Perks'">
+  <section v-if="this.perks" :id="this.mode.toLowerCase() + 'Perks'">
     <h2>Recommended {{ this.mode }} Perks</h2>
-    <div class="row">
+    <div class="row pad-side-3">
       <!--BARRELS-->
       <div class="col-2 perks">
         <h2>Barrels</h2>
@@ -28,6 +34,11 @@
         <h2>4th Slot</h2>
         <PerkIconList :perks="this.perks.perk4" />
       </div>
+      <!--Masterworks-->
+      <div v-if="this.masterworks && this.masterworks[0]" class="col-2">
+        <h2>Masterworks</h2>
+        <PerkIconList :perks="this.masterworks" />
+      </div>
       <!--ORIGIN TRAIT-->
       <div v-if="this.pve && this.originTrait" class="col-2">
         <h2>Origin Trait</h2>
@@ -38,24 +49,13 @@
           :title="this.originTrait.name"
         />
       </div>
-      <!--Masterworks-->
-      <div
-        v-if="
-          this.masterworks &&
-          this.masterworks[0]
-        "
-        class="col-2"
-      >
-        <h2>Masterworks</h2>
-        <PerkIconList :perks="this.masterworks" />
-      </div>
     </div>
   </section>
   <!--Recommended Godrolls-->
-  <section v-if="this.rolls" :id="this.mode.toLowerCase()+'Godrolls'">
-    <h2>{{this.mode}} Godrolls</h2>
+  <section v-if="this.rolls" :id="this.mode.toLowerCase() + 'Godrolls'">
+    <h2>{{ this.mode }} Godrolls</h2>
     <div
-      class="roll row"
+      class="roll row pad-side-3"
       v-for="roll in this.rolls"
       :key="roll.perk1.name"
     >
@@ -72,11 +72,12 @@
       </div>
       <div class="col-desc">
         <h3>{{ roll.title }}</h3>
-        <Markdown :source="roll.description.markdown" />
+        <Markdown :source="roll.description.markdown" class="description" />
       </div>
     </div>
   </section>
 </template>
+
 <script>
 import Markdown from 'vue3-markdown-it';
 import PerkIconList from './PerkIconList.vue';
@@ -110,7 +111,16 @@ export default {
   },
 };
 </script>
+
 <style>
+.roll {
+  margin-top: 1.5em;
+}
+
+.description {
+  text-align: justify;
+}
+
 .n-divider .n-divider__line {
   height: 2px;
   background-color: white !important;
@@ -118,12 +128,13 @@ export default {
 
 .n-divider:not(.n-divider--vertical) {
   margin-top: 0;
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .col-perk {
   width: 28%;
 }
+
 .col-desc {
   width: 60%;
   padding-left: 30px;

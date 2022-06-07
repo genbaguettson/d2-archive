@@ -1,15 +1,14 @@
 <template>
   <div></div>
 </template>
+
 <script>
-import { useQuery } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
+import { useQuery } from "@vue/apollo-composable";
+import gql from "graphql-tag";
 
 export default {
   setup() {
-    const { result, loading, error } = useQuery(gql`
-
-    `);
+    const { result, loading, error } = useQuery(gql``);
     return {
       weaponsData: result,
       weaponsLoading: loading,
@@ -18,5 +17,6 @@ export default {
   },
 };
 </script>
+
 <style>
 </style>
