@@ -17,11 +17,13 @@
       <!--BARRELS-->
       <div class="col-2 perks">
         <h2>Barrels</h2>
+        <DescriptionDrawer :perks="this.perks.perk1" :title="'Barrels'" />
         <PerkIconList :perks="this.perks.perk1" />
       </div>
       <!--Magazines-->
       <div class="col-2 perks">
         <h2>Magazines</h2>
+        <DescriptionModal :perks="this.perks.perk3" :title="'Magazines'"/>
         <PerkIconList :perks="this.perks.perk2" />
       </div>
       <!--3rd-->
@@ -82,6 +84,8 @@
 import Markdown from 'vue3-markdown-it';
 import PerkIconList from './PerkIconList.vue';
 import ContentIndicators from './ContentIndicators.vue';
+import DescriptionDrawer from '../DescriptionDrawer.vue';
+import DescriptionModal from '../DescriptionModal.vue';
 
 export default {
   props: ['weapon', 'pve', 'pvp'],
@@ -108,6 +112,8 @@ export default {
     Markdown,
     PerkIconList,
     ContentIndicators,
+    DescriptionDrawer,
+    DescriptionModal,
   },
 };
 </script>

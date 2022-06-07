@@ -2,10 +2,20 @@ import { createApp, provide, h } from 'vue';
 import { DefaultApolloClient } from '@vue/apollo-composable';
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
 import {
-  create, NCard, NConfigProvider, NDivider, NSpace,
+  create,
+  NCard,
+  NConfigProvider,
+  NDivider,
+  NSpace,
+  NButtonGroup,
+  NButton,
+  NDrawer,
+  NDrawerContent,
+  NModal,
+  NPopover,
 } from 'naive-ui';
-import 'vfonts/Lato.css';
 import 'vfonts/FiraCode.css';
+import 'vfonts/Roboto.css';
 import Markdown from 'vue3-markdown-it';
 import router from './router';
 import App from './App.vue';
@@ -31,6 +41,12 @@ const naive = create({
     NCard,
     NSpace,
     NDivider,
+    NButtonGroup,
+    NButton,
+    NDrawer,
+    NDrawerContent,
+    NModal,
+    NPopover,
   ],
 });
 
