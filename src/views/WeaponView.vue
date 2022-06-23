@@ -1,47 +1,30 @@
 <template>
-  <n-space justify="center">
-    <div v-if="weaponData && weaponData.weapon" class="weapon">
-      <n-card :title="weaponData.weapon.name">
-        <template #cover>
+  <div v-if="weaponData && weaponData.weapon" class="main-container">
+    <div class="weapon">
+      <MainInfo :weapon="weaponData.weapon" />
+      <div>
+        <h2>Drops From:</h2>
+        <div class="dropFrame pad-side-3">
           <img
-            v-if="weaponData.weapon.image"
-            :src="weaponData.weapon.image.url"
-            :alt="'Thumbnail of ' + weaponData.weapon.name"
+            v-if="weaponData.weapon.source"
+            class="source-icon"
+            :src="weaponData.weapon.source.soureIcon.url"
+            :title="'Source: ' + weaponData.weapon.source.sourceTitle"
+            :alt="'Source: ' + weaponData.weapon.source.sourceTitle"
           />
-        </template>
-        <template #header-extra>
-          <img
-            v-if="weaponData.weapon.element"
-            class="damagetype-icon"
-            :src="getDamageIcon(weaponData.weapon.element)"
-            :title="'Damage Type: ' + weaponData.weapon.element"
-            :alt="'Damage Type: ' + weaponData.weapon.element"
-          />
-        </template>
-        <div>
-          <h2>Drops From:</h2>
-          <div class="dropFrame pad-side-3">
-            <img
-              v-if="weaponData.weapon.source"
-              class="source-icon"
-              :src="weaponData.weapon.source.soureIcon.url"
-              :title="'Source: ' + weaponData.weapon.source.sourceTitle"
-              :alt="'Source: ' + weaponData.weapon.source.sourceTitle"
-            />
-            <h3>
-              {{ weaponData.weapon.source.sourceTitle }}
-            </h3>
-          </div>
+          <h3>
+            {{ weaponData.weapon.source.sourceTitle }}
+          </h3>
         </div>
-        <!--PVE-->
-        <GamemodeSection pve="true" :weapon="weaponData.weapon" />
-        <!--PVP-->
-        <GamemodeSection :weapon="weaponData.weapon" />
-      </n-card>
+      </div>
+      <!--PVE-->
+      <GamemodeSection pve="true" :weapon="weaponData.weapon" />
+      <!--PVP-->
+      <GamemodeSection :weapon="weaponData.weapon" />
     </div>
-    <div v-else-if="weaponLoading">Loading...</div>
-    <div v-else-if="weaponError">{{ error }}</div>
-  </n-space>
+  </div>
+  <div v-else-if="weaponLoading">Loading...</div>
+  <div v-else-if="weaponError">{{ error }}</div>
   <div v-if="weaponData && !weaponData.weapon">
     <p style="color: white">
       WD: {{ weaponData }} WL: {{ weaponLoading }} WE: {{ weaponError }}
@@ -53,6 +36,7 @@
 <script>
 import { useQuery } from '@vue/apollo-composable';
 import GamemodeSection from '../components/Weapon/GamemodeSection.vue';
+import MainInfo from '../components/MainInfo.vue';
 import GET_WEAPON_BY_NAME from '../data/queries';
 
 export default {
@@ -97,6 +81,25 @@ export default {
   },
   components: {
     GamemodeSection,
+    MainInfo,
   },
 };
 </script>
+
+<style>
+
+.main-container {
+  display: flex;
+  justify-content: center;
+}
+
+.weapon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2b2b2b;
+  width: 70%;
+  padding: 20px 30px;
+}
+
+</style>

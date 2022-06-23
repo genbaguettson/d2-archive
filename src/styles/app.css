@@ -6,7 +6,7 @@
 .n-card {
     color: white;
     font-family: v-sans, sans-serif;
-    max-width: 800px;
+    max-width: 80%;
 }
 
 .n-card-cover img {
