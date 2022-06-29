@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <p class="weapon-rarity">
+  <div class="main-info-container">
+    <p class="part-subtitle">
       Legendary Weapon
     </p>
-    <div class="main-info-divider"></div>
+    <div class="info-divider"></div>
     <div class="info-box">
       <img
           v-if="weapon.image"
@@ -85,72 +85,62 @@ export default {
 </script>
 
 <style scoped>
-  .weapon-rarity {
-    font-size: 12px;
-    color: #6c6c6c;
-  }
 
-  .main-info-divider {
-    width: 100%;
-    height: 1.5px;
-    background-color: #404040;
-  }
+.main-info-container {
+  margin-bottom: 15px;
+}
 
-  .weapon-thumbnail {
-    width: 60px;
-    height: 60px;
-  }
+.weapon-thumbnail {
+  width: 60px;
+  height: 60px;
+}
 
-  .info-box {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-  }
+.info-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
 
-  .main-info-box {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-left: 15px;
-  }
+.main-info-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 15px;
+}
 
-  .weapon-name {
-    margin-top: 0;
-    color: white;
-    font-weight: 400;
-  }
+.weapon-name {
+  margin-top: 0;
+  color: white;
+  font-weight: 400;
+}
 
-  .weapon-type {
-    margin-bottom: 0;
-    color: #737373;
-    font-weight: 600;
-  }
+.weapon-type {
+  margin-bottom: 0;
+  color: #737373;
+  font-weight: 600;
+}
 
-  .additional-info-container {
-    display: flex;
-    flex-direction: row;
-  }
+.additional-info-container {
+  display: flex;
+  flex-direction: row;
+}
 
-  .additional-info-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 15px;
-  }
+.additional-info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+}
 
-  .additional-info-icon {
-    width: 30px;
-    height: 30px;
-  }
+.additional-info-icon {
+  width: 30px;
+  height: 30px;
+}
 
-  .additional-info-text {
-    margin-top: 5px;
-    color: white;
-    font-size: 12px;
-  }
-
-  p {
-    margin: 0;
-  }
+.additional-info-text {
+  margin-top: 5px;
+  color: white;
+  font-size: 12px;
+}
 </style>

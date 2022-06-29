@@ -1,20 +1,22 @@
 <template>
   <div v-if="weaponData && weaponData.weapon" class="main-container">
     <div class="weapon">
-      <MainInfo :weapon="weaponData.weapon" />
-      <div>
-        <h2>Drops From:</h2>
-        <div class="dropFrame pad-side-3">
-          <img
-            v-if="weaponData.weapon.source"
-            class="source-icon"
-            :src="weaponData.weapon.source.soureIcon.url"
-            :title="'Source: ' + weaponData.weapon.source.sourceTitle"
-            :alt="'Source: ' + weaponData.weapon.source.sourceTitle"
+      <MainInfoView :weapon="weaponData.weapon" />
+      <div class="additional-info-box">
+        <StatsView />
+        <div class="additional-info-div">
+          <AdditionalInfoView
+            title="Intrinsic"
+            :text="weaponData.weapon.archetype.frame"
+            subtext="I am the Sea"
+            :iconUrl="weaponData.weapon.source.soureIcon.url"
           />
-          <h3>
-            {{ weaponData.weapon.source.sourceTitle }}
-          </h3>
+          <AdditionalInfoView
+            title="Source"
+            :text="weaponData.weapon.source.sourceTitle"
+            subtext="Poop Encounter"
+            :iconUrl="weaponData.weapon.source.soureIcon.url"
+          />
         </div>
       </div>
       <!--PVE-->
@@ -36,7 +38,9 @@
 <script>
 import { useQuery } from '@vue/apollo-composable';
 import GamemodeSection from '../components/Weapon/GamemodeSection.vue';
-import MainInfo from '../components/MainInfo.vue';
+import MainInfoView from '../components/MainInfoView.vue';
+import AdditionalInfoView from '../components/AdditionalInfoView.vue';
+import StatsView from '../components/StatsView.vue';
 import GET_WEAPON_BY_NAME from '../data/queries';
 
 export default {
@@ -81,7 +85,9 @@ export default {
   },
   components: {
     GamemodeSection,
-    MainInfo,
+    MainInfoView,
+    AdditionalInfoView,
+    StatsView,
   },
 };
 </script>
@@ -100,6 +106,33 @@ export default {
   background-color: #2b2b2b;
   width: 70%;
   padding: 20px 30px;
+}
+
+.part-subtitle {
+  font-size: 12px;
+  color: #6c6c6c;
+}
+
+.info-divider {
+  width: 100%;
+  height: 1.5px;
+  background-color: #404040;
+}
+
+.additional-info-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.additional-info-div {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+p {
+  margin: 0;
 }
 
 </style>
