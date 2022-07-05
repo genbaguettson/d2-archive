@@ -3,7 +3,7 @@
     <div class="weapon">
       <MainInfoView :weapon="weaponData.weapon" />
       <div class="additional-info-box">
-        <StatsView />
+        <StatsView title="Stats" :stats="weaponStats"/>
         <div class="additional-info-div">
           <AdditionalInfoView
             title="Intrinsic"
@@ -54,6 +54,19 @@ export default {
       weaponData: result,
       weaponLoading: loading,
       weaponError: error,
+      weaponStats: {
+        Impact: 29,
+        Range: 58,
+        Stability: 46,
+        Handling: 56,
+        'Reload Speed': 54,
+        'Aim Assistance': 38,
+        'Airborne Effectiveness': 17,
+        Zoom: 17,
+        'Rounds Per Minute': 450,
+        Magazine: 44,
+        'Recoil Direction': 61,
+      },
     };
   },
   data() {

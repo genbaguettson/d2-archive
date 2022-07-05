@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .additional-info-container:not(:last-child) {
   margin-bottom: 25px;

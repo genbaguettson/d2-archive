@@ -13,6 +13,7 @@ import {
   NDrawerContent,
   NModal,
   NPopover,
+  NProgress,
 } from 'naive-ui';
 import 'vfonts/FiraCode.css';
 import 'vfonts/Roboto.css';
@@ -47,6 +48,7 @@ const naive = create({
     NDrawerContent,
     NModal,
     NPopover,
+    NProgress,
   ],
 });
 
