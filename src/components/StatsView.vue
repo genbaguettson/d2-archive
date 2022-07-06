@@ -7,25 +7,23 @@
     <div class="info-box">
       <div class="stat-box" v-for="(stat, statName, index) in stats" :key="index">
         <p class="stat-name">{{ statName }}</p>
-        <n-progress
-          class="stat-display"
-          type='line'
-          :percentage="stat"
-          :color="'var(white)'"
-          :border-radius="0"
-        >{{ stat }}</n-progress>
+        <StatBar :stat="stat"></StatBar>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import StatBar from './dataDisplay/StatBar.vue';
+
 export default {
   props: ['title', 'stats'],
-  setup(props) {
-    console.log(props.stats);
+  setup() {
     return {
     };
+  },
+  components: {
+    StatBar,
   },
 };
 </script>

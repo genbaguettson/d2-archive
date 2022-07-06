@@ -37,7 +37,7 @@
 
 <script>
 import { useQuery } from '@vue/apollo-composable';
-import GamemodeSection from '../components/Weapon/GamemodeSection.vue';
+import GamemodeSection from '../components/GamemodeSection.vue';
 import MainInfoView from '../components/MainInfoView.vue';
 import AdditionalInfoView from '../components/AdditionalInfoView.vue';
 import StatsView from '../components/StatsView.vue';
@@ -116,7 +116,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #2b2b2b;
+  background-color: #1e1e1e;
   width: 70%;
   padding: 20px 30px;
 }

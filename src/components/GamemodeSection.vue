@@ -82,10 +82,10 @@
 
 <script>
 import Markdown from 'vue3-markdown-it';
-import PerkIconList from './PerkIconList.vue';
-import ContentIndicators from './ContentIndicators.vue';
-import DescriptionDrawer from '../DescriptionDrawer.vue';
-import DescriptionModal from '../DescriptionModal.vue';
+import PerkIconList from './tmpDisplayTests/PerkIconList.vue';
+import ContentIndicators from './dataDisplay/ContentIndicators.vue';
+import DescriptionDrawer from './tmpDisplayTests/DescriptionDrawer.vue';
+import DescriptionModal from './tmpDisplayTests/DescriptionModal.vue';
 
 export default {
   props: ['weapon', 'pve', 'pvp'],
