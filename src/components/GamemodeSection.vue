@@ -7,13 +7,13 @@
     <h2>{{ this.mode }} Description</h2>
     <Markdown
       :source="this.description.markdown"
-      class="description pad-side-3"
+      class="description"
     />
   </section>
   <!--Recommended Perks-->
   <section v-if="this.perks" :id="this.mode.toLowerCase() + 'Perks'">
     <h2>Recommended {{ this.mode }} Perks</h2>
-    <div class="row pad-side-3">
+    <div class="row">
       <!--BARRELS-->
       <div class="col-2 perks">
         <h2>Barrels</h2>
@@ -55,7 +55,7 @@
   <section v-if="this.rolls" :id="this.mode.toLowerCase() + 'Godrolls'">
     <h2>{{ this.mode }} Godrolls</h2>
     <div
-      class="roll row pad-side-3"
+      class="roll row"
       v-for="roll in this.rolls"
       :key="roll.perk1.name"
     >
@@ -79,7 +79,7 @@
 
 <script>
 import Markdown from 'vue3-markdown-it';
-import PerkIconList from './tmpDisplayTests/PerkIconList.vue';
+import PerkIconList from './PerkIconList.vue';
 import ContentIndicators from './dataDisplay/ContentIndicators.vue';
 
 export default {

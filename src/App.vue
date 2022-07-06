@@ -62,10 +62,6 @@ html, body {
   flex-direction: row;
 }
 
-.pad-side-3 {
-  padding: 0 3%;
-}
-
 .justify-text {
   text-align: justify
 }
