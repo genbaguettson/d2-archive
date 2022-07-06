@@ -54,6 +54,7 @@ export default {
       weaponData: result,
       weaponLoading: loading,
       weaponError: error,
+      // TEMPORARY STATS FOR STAT VIEW
       weaponStats: {
         Impact: 29,
         Range: 58,

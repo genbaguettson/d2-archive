@@ -17,13 +17,11 @@
       <!--BARRELS-->
       <div class="col-2 perks">
         <h2>Barrels</h2>
-        <DescriptionDrawer :perks="this.perks.perk1" :title="'Barrels'" />
         <PerkIconList :perks="this.perks.perk1" />
       </div>
       <!--Magazines-->
       <div class="col-2 perks">
         <h2>Magazines</h2>
-        <DescriptionModal :perks="this.perks.perk3" :title="'Magazines'"/>
         <PerkIconList :perks="this.perks.perk2" />
       </div>
       <!--3rd-->
@@ -65,7 +63,6 @@
         <div class="row perks">
           <ContentIndicators :indicators="roll.contentIndicators" />
         </div>
-        <n-divider />
         <div class="row perks">
           <PerkIconList
             :perks="[roll.perk1, roll.perk2, roll.perk3, roll.perk4]"
@@ -84,8 +81,6 @@
 import Markdown from 'vue3-markdown-it';
 import PerkIconList from './tmpDisplayTests/PerkIconList.vue';
 import ContentIndicators from './dataDisplay/ContentIndicators.vue';
-import DescriptionDrawer from './tmpDisplayTests/DescriptionDrawer.vue';
-import DescriptionModal from './tmpDisplayTests/DescriptionModal.vue';
 
 export default {
   props: ['weapon', 'pve', 'pvp'],
@@ -112,8 +107,6 @@ export default {
     Markdown,
     PerkIconList,
     ContentIndicators,
-    DescriptionDrawer,
-    DescriptionModal,
   },
 };
 </script>
@@ -125,16 +118,6 @@ export default {
 
 .description {
   text-align: justify;
-}
-
-.n-divider .n-divider__line {
-  height: 2px;
-  background-color: white !important;
-}
-
-.n-divider:not(.n-divider--vertical) {
-  margin-top: 0;
-  margin-bottom: 0.5em;
 }
 
 .col-perk {

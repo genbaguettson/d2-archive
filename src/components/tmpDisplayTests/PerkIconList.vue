@@ -1,26 +1,12 @@
 <template>
-  <n-popover trigger="hover" v-for="perk in this.perks" :key="perk.name">
-    <template #trigger>
-      <img
-        :src="perk.icon.url"
-        :alt="perk.name"
-        :title="perk.name"
-      />
-    </template>
-    <div class="perk-popover">
-      <img
-        :src="perk.icon.url"
-        :alt="perk.name"
-        :title="perk.name"
-      />
-      <div>
-        <h3 class="title-popover">{{perk.name}}</h3>
-        <p>
-          Perk description here like idk uh who lives in a pineapple under the sea
-        </p>
-      </div>
-    </div>
-  </n-popover>
+  <div class="perk-list">
+    <img
+      v-for="perk in this.perks" :key="perk.name"
+      :src="perk.icon.url"
+      :alt="perk.name"
+      :title="perk.name"
+    />
+  </div>
 </template>
 
 <script>
@@ -37,6 +23,11 @@ export default {
 </script>
 
 <style scoped>
+.perk-list {
+  display: flex;
+  flex-direction: row;
+}
+
 img {
   width: 48px;
   height: 48px;
@@ -45,11 +36,5 @@ img {
 
 img:last-child {
   margin-right: 0;
-}
-
-.perk-popover {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 </style>

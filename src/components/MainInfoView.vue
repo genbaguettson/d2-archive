@@ -86,10 +86,6 @@ export default {
 
 <style scoped>
 
-.main-info-container {
-  margin-bottom: 15px;
-}
-
 .weapon-thumbnail {
   width: 60px;
   height: 60px;
@@ -98,7 +94,7 @@ export default {
 .info-box {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  padding: 15px 10px;
 }
 
 .main-info-box {
