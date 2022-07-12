@@ -3,7 +3,7 @@
     <div class="weapon">
       <MainInfoView :weapon="weaponData.weapon" />
       <div class="additional-info-box">
-        <StatsView title="Stats" :stats="weaponStats"/>
+        <StatsContainer title="Stats" :stats="weaponStats" color="red"/>
         <div class="additional-info-div">
           <AdditionalInfoView
             title="Intrinsic"
@@ -38,9 +38,9 @@
 <script>
 import { useQuery } from '@vue/apollo-composable';
 import GamemodeSection from '../components/GamemodeSection.vue';
-import MainInfoView from '../components/MainInfoView.vue';
-import AdditionalInfoView from '../components/AdditionalInfoView.vue';
-import StatsView from '../components/StatsView.vue';
+import MainInfoView from '../components/weaponInfo/WeaponMainInfo.vue';
+import AdditionalInfoView from '../components/weaponInfo/WeaponAdditionalInfo.vue';
+import StatsContainer from '../components/weaponInfo/WeaponStats.vue';
 import GET_WEAPON_BY_NAME from '../data/queries';
 
 export default {
@@ -49,7 +49,6 @@ export default {
     const { result, loading, error } = useQuery(GET_WEAPON_BY_NAME, {
       name: props.name,
     });
-    console.log(result);
     return {
       weaponData: result,
       weaponLoading: loading,
@@ -101,12 +100,12 @@ export default {
     GamemodeSection,
     MainInfoView,
     AdditionalInfoView,
-    StatsView,
+    StatsContainer,
   },
 };
 </script>
 
-<style>
+<style scoped>
 
 .main-container {
   display: flex;
@@ -122,17 +121,6 @@ export default {
   padding: 20px 30px;
 }
 
-.part-subtitle {
-  font-size: 12px;
-  color: #6c6c6c;
-}
-
-.info-divider {
-  width: 100%;
-  height: 1.5px;
-  background-color: #404040;
-}
-
 .additional-info-box {
   display: flex;
   flex-direction: row;
@@ -143,10 +131,6 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
-}
-
-p {
-  margin: 0;
 }
 
 </style>

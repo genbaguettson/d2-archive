@@ -1,9 +1,6 @@
 <template>
   <div class="additional-info-container">
-    <p class="part-subtitle">
-      {{title}}
-    </p>
-    <div class="info-divider"></div>
+    <SectionTitle :title="title" />
     <div class="info-box">
       <img
         class="info-icon"
@@ -24,11 +21,16 @@
 </template>
 
 <script>
+import SectionTitle from '../layouts/SectionTitle.vue';
+
 export default {
   props: ['title', 'text', 'subtext', 'iconUrl'],
   setup() {
     return {
     };
+  },
+  components: {
+    SectionTitle,
   },
 };
 </script>

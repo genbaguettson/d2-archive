@@ -73,8 +73,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  margin-top: 0;
+  margin: 0;
   padding-top: 0;
-  overflow-wrap: break-word;
 }
+
 </style>

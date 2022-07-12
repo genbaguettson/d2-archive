@@ -1,9 +1,6 @@
 <template>
   <div class="stats-view-container">
-    <p class="part-subtitle">
-      {{title}}
-    </p>
-    <div class="info-divider"></div>
+    <SectionTitle :title="title" />
     <div class="info-box">
       <div class="stat-box" v-for="(stat, statName, index) in stats" :key="index">
         <p class="stat-name">{{ statName }}</p>
@@ -14,7 +11,8 @@
 </template>
 
 <script>
-import StatBar from './dataDisplay/StatBar.vue';
+import StatBar from '../dataDisplay/StatBar.vue';
+import SectionTitle from '../layouts/SectionTitle.vue';
 
 export default {
   props: ['title', 'stats'],
@@ -24,6 +22,7 @@ export default {
   },
   components: {
     StatBar,
+    SectionTitle,
   },
 };
 </script>

@@ -1,9 +1,6 @@
 <template>
   <div class="main-info-container">
-    <p class="part-subtitle">
-      Legendary Weapon
-    </p>
-    <div class="info-divider"></div>
+    <SectionTitle title="Legendary Weapon" />
     <div class="info-box">
       <img
           v-if="weapon.image"
@@ -48,6 +45,9 @@
 </template>
 
 <script>
+
+import SectionTitle from '../layouts/SectionTitle.vue';
+
 export default {
   props: ['weapon'],
   setup() {
@@ -80,6 +80,9 @@ export default {
           return this.DMG_IMG_URL.KINETIC;
       }
     },
+  },
+  components: {
+    SectionTitle,
   },
 };
 </script>
