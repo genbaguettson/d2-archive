@@ -54,9 +54,6 @@ export default {
     const x = Math.sin(direction);
     const y = Math.cos(direction);
 
-    console.log(direction);
-    console.log(x);
-
     // Higher value means less spread
     // scaled by the spread factor (halved since we expand to either side)
     // in radians

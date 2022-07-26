@@ -1,28 +1,29 @@
 <template>
   <div v-if="weaponData && weaponData.weapon" class="main-container">
     <div class="weapon">
-      <MainInfoView :weapon="weaponData.weapon" />
-      <div class="additional-info-box">
-        <StatsContainer title="Stats" :stats="weaponStats" color="red"/>
-        <div class="additional-info-div">
-          <AdditionalInfoView
-            title="Intrinsic"
-            :text="weaponData.weapon.archetype.frame"
-            subtext="I am the Sea"
-            :iconUrl="weaponData.weapon.source.soureIcon.url"
-          />
-          <AdditionalInfoView
-            title="Source"
-            :text="weaponData.weapon.source.sourceTitle"
-            subtext="Poop Encounter"
-            :iconUrl="weaponData.weapon.source.soureIcon.url"
-          />
+      <div class="base-info">
+        <MainInfoView :weapon="weaponData.weapon" />
+        <div class="additional-info-box">
+          <StatsContainer title="Stats" :stats="weaponStats" color="red"/>
+          <div class="additional-info-div">
+            <AdditionalInfoView
+              title="Intrinsic"
+              :text="weaponData.weapon.archetype.frame"
+              subtext="I am the Sea"
+              :iconUrl="weaponData.weapon.source.soureIcon.url"
+            />
+            <AdditionalInfoView
+              title="Source"
+              :text="weaponData.weapon.source.sourceTitle"
+              subtext="Poop Encounter"
+              :iconUrl="weaponData.weapon.source.soureIcon.url"
+            />
+          </div>
         </div>
       </div>
-      <!--PVE-->
-      <GamemodeSection pve="true" :weapon="weaponData.weapon" />
-      <!--PVP-->
-      <GamemodeSection :weapon="weaponData.weapon" />
+      <TabsDisplay :tabs="['PVE', 'PVP']"></TabsDisplay>
+      <!-- <GamemodeSection pve="true" :weapon="weaponData.weapon" />
+      <GamemodeSection :weapon="weaponData.weapon" /> -->
     </div>
   </div>
   <div v-else-if="weaponLoading">Loading...</div>
@@ -37,11 +38,12 @@
 
 <script>
 import { useQuery } from '@vue/apollo-composable';
-import GamemodeSection from '../components/GamemodeSection.vue';
-import MainInfoView from '../components/weaponInfo/WeaponMainInfo.vue';
-import AdditionalInfoView from '../components/weaponInfo/WeaponAdditionalInfo.vue';
-import StatsContainer from '../components/weaponInfo/WeaponStats.vue';
-import GET_WEAPON_BY_NAME from '../data/queries';
+// import GamemodeSection from '@/components/GamemodeSection.vue';
+import MainInfoView from '@/components/weaponInfo/WeaponMainInfo.vue';
+import AdditionalInfoView from '@/components/weaponInfo/WeaponAdditionalInfo.vue';
+import StatsContainer from '@/components/weaponInfo/WeaponStats.vue';
+import GET_WEAPON_BY_NAME from '@/data/queries';
+import TabsDisplay from '@/components/layouts/TabsDisplay.vue';
 
 export default {
   props: ['name'],
@@ -97,10 +99,11 @@ export default {
     },
   },
   components: {
-    GamemodeSection,
+    // GamemodeSection,
     MainInfoView,
     AdditionalInfoView,
     StatsContainer,
+    TabsDisplay,
   },
 };
 </script>
@@ -110,15 +113,19 @@ export default {
 .main-container {
   display: flex;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .weapon {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-color: #1e1e1e;
-  width: 70%;
-  padding: 20px 30px;
+  width: 80%;
+  padding: 20px 0;
+}
+
+.base-info {
+  padding: 0 30px;
 }
 
 .additional-info-box {

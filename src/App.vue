@@ -24,8 +24,9 @@ html, body {
 }
 
 .base-background {
-  background-image: url('./assets/synthetik.jpg');
+  background-image: url('./assets/blackArmory.png');
   background-position: center;
+  background-size: cover;
 }
 
 .grid-background {
