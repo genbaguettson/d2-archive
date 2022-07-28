@@ -4,7 +4,7 @@
       <div class="base-info">
         <MainInfoView :weapon="weaponData.weapon" />
         <div class="additional-info-box">
-          <StatsContainer title="Stats" :stats="weaponStats" color="red"/>
+          <WeaponStats title="Stats" :stats="weaponStats" color="red"/>
           <div class="additional-info-div">
             <AdditionalInfoView
               title="Intrinsic"
@@ -41,7 +41,7 @@ import { useQuery } from '@vue/apollo-composable';
 // import GamemodeSection from '@/components/GamemodeSection.vue';
 import MainInfoView from '@/components/weaponInfo/WeaponMainInfo.vue';
 import AdditionalInfoView from '@/components/weaponInfo/WeaponAdditionalInfo.vue';
-import StatsContainer from '@/components/weaponInfo/WeaponStats.vue';
+import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
 import GET_WEAPON_BY_NAME from '@/data/queries';
 import TabsDisplay from '@/components/layouts/TabsDisplay.vue';
 
@@ -102,7 +102,7 @@ export default {
     // GamemodeSection,
     MainInfoView,
     AdditionalInfoView,
-    StatsContainer,
+    WeaponStats,
     TabsDisplay,
   },
 };
@@ -120,12 +120,8 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: #1e1e1e;
-  width: 80%;
-  padding: 20px 0;
-}
-
-.base-info {
-  padding: 0 30px;
+  width: 70%;
+  padding: 20px 30px;
 }
 
 .additional-info-box {

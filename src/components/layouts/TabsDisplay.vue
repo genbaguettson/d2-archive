@@ -4,10 +4,12 @@
       <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
       <div
         v-for="(tabName, index) in tabs"
-        :key="index" class="tab-title-container"
+        :key="index"
+        class="tab-title-container"
         @click="changeTab(tabName, index)"
+        v-ripple
       >
-        <nav class="tab-title">
+        <nav class="tab-title" :class="{ 'active-title': currentTab === tabName}">
           {{tabName}}
         </nav>
       </div>
@@ -53,10 +55,6 @@ export default {
   margin-top: 10px;
 }
 
-.tab-line-container {
-  position: relative;
-}
-
 .tab-title-container {
   display: flex;
   flex: 1;
@@ -65,6 +63,18 @@ export default {
   padding: 5px;
   z-index: 1;
   cursor: pointer;
+  /* RIPPLE BUTTON TESTING */
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid #8787871a;
+}
+
+.tab-title-container:last-child {
+  border-right: 0;
+}
+
+.tab-line-container {
+  position: relative;
 }
 
 .tab-title {
@@ -74,16 +84,24 @@ export default {
   color: white;
 }
 
+.active-title {
+  background: linear-gradient(90deg, #c11671 0%, #a05ff0 50%, #84e4ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
 .tabs-content-container{
   display: flex;
 }
 
 .tab {
-    position: absolute;
-    background: linear-gradient(90deg, #850E4D 0%, #633A96 50%, #68B6CC 100%);
-    height: 4px;
-    z-index: 0;
-    transition: 0.9s cubic-bezier(0.1, 0.9, 0.3, 1);
+  position: absolute;
+  background: linear-gradient(90deg, #850E4D 0%, #633A96 50%, #68B6CC 100%);
+  height: 3px;
+  z-index: 0;
+  transition: 0.9s cubic-bezier(0.1, 0.9, 0.3, 1);
 }
 
 </style>
