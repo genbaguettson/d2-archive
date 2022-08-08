@@ -1,5 +1,8 @@
 <template>
   <div v-if="weaponData && weaponData.weapon" class="main-container">
+    <div class="square-nav-bar">
+      <SquareDisplay />
+    </div>
     <div class="weapon">
       <div class="base-info">
         <MainInfoView :weapon="weaponData.weapon" />
@@ -21,7 +24,7 @@
           </div>
         </div>
       </div>
-      <TabsDisplay :tabs="['PVE', 'PVP']"></TabsDisplay>
+      <TabsDisplay :tabs="tabs" :weapon="weaponData.weapon"></TabsDisplay>
       <!-- <GamemodeSection pve="true" :weapon="weaponData.weapon" />
       <GamemodeSection :weapon="weaponData.weapon" /> -->
     </div>
@@ -44,6 +47,10 @@ import AdditionalInfoView from '@/components/weaponInfo/WeaponAdditionalInfo.vue
 import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
 import GET_WEAPON_BY_NAME from '@/data/queries';
 import TabsDisplay from '@/components/layouts/TabsDisplay.vue';
+import SquareDisplay from '@/components/layouts/SquareDisplay.vue';
+
+import PveTab from '@/components/tabs/PveTab.vue';
+import PvpTab from '@/components/tabs/PvpTab.vue';
 
 export default {
   props: ['name'],
@@ -80,6 +87,18 @@ export default {
         KINETIC: 'https://media.graphassets.com/uAfCSEA9Ryi8nCC0HDim',
         VOID: 'https://media.graphassets.com/eTxoUE78QEuQ4olgnqXd',
       },
+      tabs: [
+        {
+          name: 'PvE',
+          componentName: 'pveTab',
+          component: PveTab,
+        },
+        {
+          name: 'PvP',
+          componentName: 'pvpTab',
+          component: PvpTab,
+        },
+      ],
     };
   },
   methods: {
@@ -104,6 +123,7 @@ export default {
     AdditionalInfoView,
     WeaponStats,
     TabsDisplay,
+    SquareDisplay,
   },
 };
 </script>
@@ -116,11 +136,17 @@ export default {
   min-height: 100vh;
 }
 
+.square-nav-bar {
+  display: flex;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
 .weapon {
   display: flex;
   flex-direction: column;
   background-color: #1e1e1e;
-  width: 70%;
+  width: 100%;
   padding: 20px 30px;
 }
 

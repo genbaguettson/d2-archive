@@ -20,6 +20,7 @@ html, body {
   margin: 0;
   font-size: 14px;
   font-family: 'Roboto', 'Fira Sans',sans-serif;
+  color: white;
   line-height: 1.6;
 }
 
@@ -36,11 +37,6 @@ html, body {
 .damagetype-icon {
   width: 32px;
   height: 32px;
-}
-
-.perk-icon {
-  width: 48px;
-  height: 48px;
 }
 
 .row {

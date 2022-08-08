@@ -6,7 +6,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    redirect: '/weapons/TEST',
+    redirect: '/weapon/TEST',
   },
   {
     path: '/😢',
@@ -15,8 +15,8 @@ const routes = [
     alias: ['/%F0%9F%98%A2'],
   },
   {
-    path: '/weapons/:name',
-    name: 'weapons',
+    path: '/weapon/:name',
+    name: 'weapon',
     component: WeaponView,
     props: true,
   },

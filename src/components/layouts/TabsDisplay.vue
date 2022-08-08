@@ -3,32 +3,31 @@
     <div class="tabs-title-container">
       <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
       <div
-        v-for="(tabName, index) in tabs"
+        v-for="(tab, index) in tabs"
         :key="index"
         class="tab-title-container"
-        @click="changeTab(tabName, index)"
+        @click="changeTab(tab, index)"
         v-ripple
       >
-        <nav class="tab-title" :class="{ 'active-title': currentTab === tabName}">
-          {{tabName}}
+        <nav class="tab-title" :class="{ 'active-title': currentTab.name === tab.name}">
+          {{tab.name}}
         </nav>
-      </div>
       </div>
     </div>
     <div class="tab-line-container">
       <div class="tab"
         :style="{ left: tabOffset, width: (100 / tabs.length) + '%' }"
-      >
+      ></div>
     </div>
     <div class="tabs-content-container">
-
+      <component :is="currentTab.component" :weapon="weapon"></component>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['tabs'],
+  props: ['tabs', 'weapon'],
   data(props) {
     return {
       currentTab: props.tabs[0],
@@ -36,9 +35,9 @@ export default {
     };
   },
   methods: {
-    changeTab(tabName, index) {
-      if (tabName !== this.currentTab) {
-        this.currentTab = tabName;
+    changeTab(tab, index) {
+      if (tab.name !== this.currentTab.name) {
+        this.currentTab = tab;
         this.tabOffset = `${(100 / this.tabs.length) * index}%`;
       }
     },
@@ -63,7 +62,6 @@ export default {
   padding: 5px;
   z-index: 1;
   cursor: pointer;
-  /* RIPPLE BUTTON TESTING */
   position: relative;
   overflow: hidden;
   border-right: 1px solid #8787871a;
@@ -93,7 +91,7 @@ export default {
 }
 
 .tabs-content-container{
-  display: flex;
+  width: 100%;
 }
 
 .tab {
