@@ -1,7 +1,7 @@
 <template>
-  <div class="main-div">
-    <div class="roll-select" v-if="weapon">
-      <div v-for="(roll, index) in weapon.pveGodrolls" :key="index" class="godroll">
+  <div class="main-div" v-if="weaponData">
+    <div class="roll-select">
+      <div v-for="(roll, index) in weaponData.pveGodrolls" :key="index" class="godroll">
         <img :src="roll.perk1.icon.url" :alt="roll.perk1.name" class="perk-icon"/>
         <img :src="roll.perk2.icon.url" :alt="roll.perk2.name" class="perk-icon"/>
         <img :src="roll.perk3.icon.url" :alt="roll.perk3.name" class="perk-icon"/>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ['weapon'],
+  props: ['weaponData'],
   setup() {
     return {
     };

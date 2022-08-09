@@ -6,7 +6,7 @@
         :key="index"
         class="square-tab"
         :class="{ 'active': activeIndex === index }"
-        @click="setActive(index)"
+        @click="setActive(index, tab)"
         v-ripple
       >
         <img :src="tab.iconUrl" :alt="tab.name" class="square-icon"/>
@@ -16,44 +16,24 @@
 
 <script>
 
-const generalIcon = require('@/assets/generalIcon.png');
-const pveIcon = require('@/assets/otherPveIcon.png');
-const pvpIcon = require('@/assets/pvpIcon.png');
-const fullscreenIcon = require('@/assets/fullscreenIcon.png');
-
 export default {
-  props: [],
-  setup() {
-    return {
-    };
-  },
+  props: ['modelValue', 'tabs'],
+  emits: ['update:modelValue'],
   methods: {
     setActive(index) {
       this.activeIndex = index;
+      this.$emit('update:modelValue', index);
     },
   },
   data() {
     return {
-      tabs: [
-        {
-          name: 'overview',
-          iconUrl: generalIcon,
-        },
-        {
-          name: 'pve',
-          iconUrl: pveIcon,
-        },
-        {
-          name: 'pvp',
-          iconUrl: pvpIcon,
-        },
-        {
-          name: 'fullscreen',
-          iconUrl: fullscreenIcon,
-        },
-      ],
       activeIndex: 0,
     };
+  },
+  mounted() {
+    if (this.tabs.length > 0) {
+      this.setActive(0);
+    }
   },
 };
 </script>

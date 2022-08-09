@@ -1,32 +1,13 @@
 <template>
-  <div v-if="weaponData && weaponData.weapon" class="main-container">
+  <div
+    v-if="weaponData && weaponData.weapon"
+    class="main-container"
+  >
     <div class="square-nav-bar">
-      <SquareDisplay />
+      <SquareDisplay v-model="activeIndex" :tabs="tabs"/>
     </div>
-    <div class="weapon">
-      <div class="base-info">
-        <MainInfoView :weapon="weaponData.weapon" />
-        <div class="additional-info-box">
-          <WeaponStats title="Stats" :stats="weaponStats" color="red"/>
-          <div class="additional-info-div">
-            <AdditionalInfoView
-              title="Intrinsic"
-              :text="weaponData.weapon.archetype.frame"
-              subtext="I am the Sea"
-              :iconUrl="weaponData.weapon.source.soureIcon.url"
-            />
-            <AdditionalInfoView
-              title="Source"
-              :text="weaponData.weapon.source.sourceTitle"
-              subtext="Poop Encounter"
-              :iconUrl="weaponData.weapon.source.soureIcon.url"
-            />
-          </div>
-        </div>
-      </div>
-      <TabsDisplay :tabs="tabs" :weapon="weaponData.weapon"></TabsDisplay>
-      <!-- <GamemodeSection pve="true" :weapon="weaponData.weapon" />
-      <GamemodeSection :weapon="weaponData.weapon" /> -->
+    <div class="tab-display">
+      <component :is="tabs[activeIndex].name" :weaponData="weaponData.weapon"/>
     </div>
   </div>
   <div v-else-if="weaponLoading">Loading...</div>
@@ -41,16 +22,17 @@
 
 <script>
 import { useQuery } from '@vue/apollo-composable';
-// import GamemodeSection from '@/components/GamemodeSection.vue';
-import MainInfoView from '@/components/weaponInfo/WeaponMainInfo.vue';
-import AdditionalInfoView from '@/components/weaponInfo/WeaponAdditionalInfo.vue';
-import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
 import GET_WEAPON_BY_NAME from '@/data/queries';
-import TabsDisplay from '@/components/layouts/TabsDisplay.vue';
 import SquareDisplay from '@/components/layouts/SquareDisplay.vue';
 
+import OverviewTab from '@/components/tabs/OverviewTab.vue';
 import PveTab from '@/components/tabs/PveTab.vue';
 import PvpTab from '@/components/tabs/PvpTab.vue';
+
+const generalIcon = require('@/assets/generalIcon.png');
+const pveIcon = require('@/assets/otherPveIcon.png');
+const pvpIcon = require('@/assets/pvpIcon.png');
+const fullscreenIcon = require('@/assets/fullscreenIcon.png');
 
 export default {
   props: ['name'],
@@ -80,6 +62,25 @@ export default {
   },
   data() {
     return {
+      activeIndex: 0,
+      tabs: [
+        {
+          name: 'OverviewTab',
+          iconUrl: generalIcon,
+        },
+        {
+          name: 'PveTab',
+          iconUrl: pveIcon,
+        },
+        {
+          name: 'PvpTab',
+          iconUrl: pvpIcon,
+        },
+        {
+          name: 'FullscreenTab',
+          iconUrl: fullscreenIcon,
+        },
+      ],
       DMG_IMG_URL: {
         STASIS: 'https://media.graphassets.com/My7R32nKQ3uF3gUA7JBE',
         SOLAR: 'https://media.graphassets.com/i2nLrkqVTMyVNOvv06tX',
@@ -87,18 +88,6 @@ export default {
         KINETIC: 'https://media.graphassets.com/uAfCSEA9Ryi8nCC0HDim',
         VOID: 'https://media.graphassets.com/eTxoUE78QEuQ4olgnqXd',
       },
-      tabs: [
-        {
-          name: 'PvE',
-          componentName: 'pveTab',
-          component: PveTab,
-        },
-        {
-          name: 'PvP',
-          componentName: 'pvpTab',
-          component: PvpTab,
-        },
-      ],
     };
   },
   methods: {
@@ -118,12 +107,10 @@ export default {
     },
   },
   components: {
-    // GamemodeSection,
-    MainInfoView,
-    AdditionalInfoView,
-    WeaponStats,
-    TabsDisplay,
     SquareDisplay,
+    OverviewTab,
+    PveTab,
+    PvpTab,
   },
 };
 </script>
@@ -142,24 +129,12 @@ export default {
   padding: 30px 20px;
 }
 
-.weapon {
+.tab-display {
   display: flex;
   flex-direction: column;
   background-color: #1e1e1e;
   width: 100%;
   padding: 20px 30px;
-}
-
-.additional-info-box {
-  display: flex;
-  flex-direction: row;
-}
-
-.additional-info-div {
-  padding-left: 15px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 </style>
