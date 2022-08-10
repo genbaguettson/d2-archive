@@ -62,6 +62,12 @@ export default {
   transition: 0.5s linear;
 }
 
+.square-tab:hover {
+  border: 1px solid white;
+  background-color: #676767;
+  transition: 0.2s linear;
+}
+
 .square-icon {
   height: 90%;
   width: 90%;
