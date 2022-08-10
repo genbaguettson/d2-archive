@@ -1,27 +1,10 @@
 <template>
   <div class="main-div" v-if="weaponData">
-    <div class="roll-select">
-      <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
-      <div
-        v-for="(roll, index) in weaponData.pveGodrolls"
-        :key="index"
-        class="godroll"
-        @click="selectRoll(roll)"
-        :class="{ 'active': selectedRoll && selectedRoll.title === roll.title }"
-      >
-        <SectionTitle
-          :title="roll.title"
-          :white="selectedRoll && selectedRoll.title === roll.title"
-        />
-        <div class="perk-select-display grid-background">
-          <img :src="roll.perk1.icon.url" :alt="roll.perk1.name" class="perk-icon"/>
-          <img :src="roll.perk2.icon.url" :alt="roll.perk2.name" class="perk-icon"/>
-          <img :src="roll.perk3.icon.url" :alt="roll.perk3.name" class="perk-icon"/>
-          <img :src="roll.perk4.icon.url" :alt="roll.perk4.name" class="perk-icon"/>
-        </div>
-      </div>
-    </div>
-    <div class="roll-display" v-if="selectedRoll" :class="{ 'do-stuff': switchingRoll }">
+    <GodrollSelect
+      v-model="activeIndex"
+      :rolls="weaponData.pveGodrolls"
+    />
+    <div class="roll-display" v-if="selectedRoll" :class="{ 'fade-out': switchingRoll }">
       <SectionTitle title="PvE Godroll" />
       <div class="main-roll-info">
         <h2 class="roll-name">
@@ -66,6 +49,7 @@
 <script>
 import SectionTitle from '@/components/layouts/SectionTitle.vue';
 import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
+import GodrollSelect from '@/components/godrollDisplay/godrollSelect.vue';
 import { marked } from 'marked';
 
 export default {
@@ -90,28 +74,32 @@ export default {
   },
   data() {
     return {
+      activeIndex: 0,
       selectedRoll: null,
       switchingRoll: false,
     };
   },
   methods: {
-    selectRoll(roll) {
-      this.switchingRoll = true;
-      setTimeout(() => {
-        this.selectedRoll = roll;
-        this.switchingRoll = false;
-      }, '150');
-    },
     markdownToHtml(markdown) {
       return marked(markdown);
     },
   },
+  watch: {
+    activeIndex(index) {
+      this.switchingRoll = true;
+      setTimeout(() => {
+        this.selectedRoll = this.weaponData.pveGodrolls[index];
+        this.switchingRoll = false;
+      }, '150');
+    },
+  },
   mounted() {
-    this.selectRoll(this.weaponData.pveGodrolls[0]);
+    this.selectedRoll = { ...this.weaponData.pveGodrolls[0] };
   },
   components: {
     SectionTitle,
     WeaponStats,
+    GodrollSelect,
   },
 };
 </script>
@@ -163,7 +151,7 @@ export default {
   transition: 0.15s linear;
 }
 
-.roll-display.do-stuff {
+.roll-display.fade-out {
   opacity: 0.1;
 }
 

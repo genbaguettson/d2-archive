@@ -40,7 +40,6 @@ export default {
     const { result, loading, error } = useQuery(GET_WEAPON_BY_NAME, {
       name: props.name,
     });
-    console.log(result);
     return {
       weaponData: result,
       weaponLoading: loading,
