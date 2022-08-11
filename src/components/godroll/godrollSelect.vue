@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import GodrollSummary from '@/components/godrollDisplay/godrollSummary.vue';
+import GodrollSummary from '@/components/godroll/godrollSummary.vue';
 
 export default {
   props: ['modelValue', 'rolls'],

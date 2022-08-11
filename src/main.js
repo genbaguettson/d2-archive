@@ -47,6 +47,8 @@ app.directive('ripple', {
       ripple.setAttribute('class', 'ripple');
       el.appendChild(ripple);
 
+      console.log(e);
+
       // set the ripple container to the click position and start the animation
       setTimeout(() => {
         ripple.style.width = `${buttonSize}px`;
