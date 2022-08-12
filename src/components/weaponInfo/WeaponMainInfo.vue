@@ -1,10 +1,10 @@
 <template>
-  <div class="main-info-container">
+  <div>
     <SectionTitle title="Legendary Weapon" />
     <div class="info-box">
       <img
           v-if="weapon.image"
-          :src="weapon.image.url"
+          :src="thumbnail"
           :alt="'Thumbnail of ' + weapon.name"
           class="weapon-thumbnail"
         />
@@ -47,8 +47,8 @@
 <script>
 import SectionTitle from '../layouts/SectionTitle.vue';
 
-// eslint-disable-next-line no-unused-vars
 const ammoPrimary = require('@/assets/ammoPrimary.png');
+const thumbnail = require('@/assets/TMPEyaslunaTN.jpg');
 
 export default {
   props: ['weapon'],
@@ -62,6 +62,7 @@ export default {
         VOID: 'https://media.graphassets.com/eTxoUE78QEuQ4olgnqXd',
       },
       ammoPrimary,
+      thumbnail,
     };
   },
   methods: {
@@ -88,15 +89,15 @@ export default {
 
 <style scoped>
 
-.weapon-thumbnail {
-  width: 60px;
-  height: 60px;
-}
-
 .info-box {
   display: flex;
   flex-direction: row;
   padding: 15px 10px;
+}
+
+.weapon-thumbnail {
+  width: 60px;
+  height: 60px;
 }
 
 .main-info-box {

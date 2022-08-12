@@ -29,7 +29,7 @@ export default {
     };
   },
   mounted() {
-    if (this.rolls.length > 0) {
+    if (this.rolls && this.rolls.length > 0) {
       this.selectRoll(0);
     }
   },

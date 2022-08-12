@@ -1,5 +1,5 @@
 <template>
-  <div class="square-container">
+  <div>
       <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
       <div
         v-for="(tab, index) in tabs"

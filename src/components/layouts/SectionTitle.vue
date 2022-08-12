@@ -8,7 +8,6 @@
 <script>
 export default {
   props: ['title', 'white'],
-  setup() {},
 };
 </script>
 

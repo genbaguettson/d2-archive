@@ -31,13 +31,14 @@ export default {
       this.switchingRoll = true;
       setTimeout(() => {
         this.selectedRoll = this.weapon.pveGodrolls[index];
-        console.log(this.selectedRoll);
         this.switchingRoll = false;
       }, '150');
     },
   },
   mounted() {
-    this.selectedRoll = { ...this.weapon.pveGodrolls[0] };
+    if (this.weapon.pveGodrolls) {
+      this.selectedRoll = { ...this.weapon.pveGodrolls[0] };
+    }
   },
   components: {
     GodrollSelect,

@@ -24,10 +24,6 @@ import SectionTitle from '../layouts/SectionTitle.vue';
 
 export default {
   props: ['title', 'stats'],
-  setup() {
-    return {
-    };
-  },
   components: {
     StatBar,
     SectionTitle,

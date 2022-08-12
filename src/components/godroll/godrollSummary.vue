@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
   <!-- eslint-disable-next-line vuejs-accessibility/mouse-events-have-key-events -->
   <div
     class="godroll"

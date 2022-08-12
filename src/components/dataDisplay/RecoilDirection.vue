@@ -77,10 +77,5 @@ export default {
       ySpreadLess,
     };
   },
-  components: {},
 };
 </script>
-
-<style scoped>
-
-</style>

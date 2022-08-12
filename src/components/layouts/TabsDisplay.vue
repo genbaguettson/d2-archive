@@ -9,13 +9,13 @@
         @click="changeTab(tab, index)"
         v-ripple
       >
-        <nav class="tab-title" :class="{ 'active-title': currentTab.name === tab.name}">
+        <nav class="tab-title" :class="{ 'active': currentTab.name === tab.name}">
           {{tab.name}}
         </nav>
       </div>
     </div>
     <div class="tab-line-container">
-      <div class="tab"
+      <div class="tab-line"
         :style="{ left: tabOffset, width: (100 / tabs.length) + '%' }"
       ></div>
     </div>
@@ -71,10 +71,6 @@ export default {
   border-right: 0;
 }
 
-.tab-line-container {
-  position: relative;
-}
-
 .tab-title {
   font-size: 15px;
   text-transform: uppercase;
@@ -82,7 +78,7 @@ export default {
   color: white;
 }
 
-.active-title {
+.tab-title.active {
   background: linear-gradient(90deg, #c11671 0%, #a05ff0 50%, #84e4ff 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -90,16 +86,20 @@ export default {
   font-weight: 900;
 }
 
-.tabs-content-container{
-  width: 100%;
+.tab-line-container {
+  position: relative;
 }
 
-.tab {
+.tab-line {
   position: absolute;
   background: linear-gradient(90deg, #850E4D 0%, #633A96 50%, #68B6CC 100%);
   height: 3px;
   z-index: 0;
   transition: 0.9s cubic-bezier(0.1, 0.9, 0.3, 1);
+}
+
+.tabs-content-container{
+  width: 100%;
 }
 
 </style>

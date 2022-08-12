@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
   <div class="roll-display">
     <SectionTitle :title='`${type} Godroll`' />
@@ -24,17 +23,17 @@
       <div class="roll-stats half-col">
         <WeaponStats title="Stats" :stats="weaponStats"/>
       </div>
-      <div class="additional-roll-info half-col">
+      <div class="half-col">
         <SectionTitle title="Roll" />
         <div class="selected-roll-perks grid-background">
           <!-- eslint-disable-next-line max-len -->
-          <img :src="roll.perk1.icon.url" :alt="roll.perk1.name" class="sel-perk-icon"/>
+          <img :src="roll.perk1.icon.url" :alt="roll.perk1.name" class="selected-perk-icon"/>
           <!-- eslint-disable-next-line max-len -->
-          <img :src="roll.perk2.icon.url" :alt="roll.perk2.name" class="sel-perk-icon"/>
+          <img :src="roll.perk2.icon.url" :alt="roll.perk2.name" class="selected-perk-icon"/>
           <!-- eslint-disable-next-line max-len -->
-          <img :src="roll.perk3.icon.url" :alt="roll.perk3.name" class="sel-perk-icon"/>
+          <img :src="roll.perk3.icon.url" :alt="roll.perk3.name" class="selected-perk-icon"/>
           <!-- eslint-disable-next-line max-len -->
-          <img :src="roll.perk4.icon.url" :alt="roll.perk4.name" class="sel-perk-icon"/>
+          <img :src="roll.perk4.icon.url" :alt="roll.perk4.name" class="selected-perk-icon"/>
         </div>
         <SectionTitle title="Roll Description" />
         <div
@@ -148,7 +147,7 @@ export default {
 }
 
 .indicator-icon.greyed-out {
-  filter: brightness(50%)
+  filter: brightness(30%)
 }
 
 .roll-info {
@@ -164,7 +163,7 @@ export default {
   padding: 10px 0;
 }
 
-.sel-perk-icon {
+.selected-perk-icon {
   height: 50px;
   width: 50px;
   padding: 8px;

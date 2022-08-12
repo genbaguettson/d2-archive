@@ -44,34 +44,6 @@ export default {
       },
     };
   },
-  data() {
-    return {
-      activeTab: null,
-      DMG_IMG_URL: {
-        STASIS: 'https://media.graphassets.com/My7R32nKQ3uF3gUA7JBE',
-        SOLAR: 'https://media.graphassets.com/i2nLrkqVTMyVNOvv06tX',
-        ARC: 'https://media.graphassets.com/1UMeBZYKQpKMVQD9OI4u',
-        KINETIC: 'https://media.graphassets.com/uAfCSEA9Ryi8nCC0HDim',
-        VOID: 'https://media.graphassets.com/eTxoUE78QEuQ4olgnqXd',
-      },
-    };
-  },
-  methods: {
-    getDamageIcon(elementType) {
-      switch (elementType) {
-        case 'Solar':
-          return this.DMG_IMG_URL.SOLAR;
-        case 'Stasis':
-          return this.DMG_IMG_URL.STASIS;
-        case 'Arc':
-          return this.DMG_IMG_URL.ARC;
-        case 'Void':
-          return this.DMG_IMG_URL.VOID;
-        default:
-          return this.DMG_IMG_URL.KINETIC;
-      }
-    },
-  },
   components: {
     WeaponAdditionalInfo,
     WeaponStats,

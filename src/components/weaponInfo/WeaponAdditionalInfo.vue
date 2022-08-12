@@ -25,10 +25,6 @@ import SectionTitle from '../layouts/SectionTitle.vue';
 
 export default {
   props: ['title', 'text', 'subtext', 'iconUrl'],
-  setup() {
-    return {
-    };
-  },
   components: {
     SectionTitle,
   },
@@ -41,17 +37,17 @@ export default {
   margin-bottom: 25px;
 }
 
-.info-icon {
-  width: 55px;
-  height: 55px;
-  margin-right: 10px;
-}
-
 .info-box {
   display: flex;
   flex-direction: row;
   margin-top: 5px;
   padding: 10px 15px;
+}
+
+.info-icon {
+  width: 55px;
+  height: 55px;
+  margin-right: 10px;
 }
 
 .info-text-box {
