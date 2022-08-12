@@ -1,8 +1,8 @@
 <template>
   <div class="main-navbar-container">
     <div class="title-container">
-      <img class="engram" :src="engrams[getRandomInt(0, engrams.length)]" alt="engram"/>
       <div class="spacer" />
+      <img class="engram" :src="engrams[getRandomInt(0, engrams.length)]" alt="engram"/>
       <h1 class="site-name">
         THE ARCHIVE
       </h1>
@@ -78,20 +78,16 @@ export default {
   display: flex;
   height: 80%;
   width: 100%;
-  position: relative;
+  align-items: center;
 }
 
 .engram {
-  position: absolute;
-  height: 90px;
-  width: 90px;
-  top: 4px;
-  left: 5.5px;
+  height: 80%;
   z-index: 1;
 }
 
 .spacer {
-  width: 97px;
+  width: 15px;
 }
 
 .site-name {
@@ -105,7 +101,7 @@ export default {
 
 .banner-container {
   display: flex;
-  height: 20%;
+  height: 25%;
   width: 100%;
   background: linear-gradient(90deg, #850E4D 0%, #633A96 50%, #68B6CC 100%);
 }
