@@ -1,16 +1,20 @@
 <template>
   <div class="base-background">
+    <Navbar />
     <router-view />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import Navbar from '@/components/navbar/navBar.vue';
 
 export default defineComponent({
   setup() {
-    return {
-    };
+    return {};
+  },
+  components: {
+    Navbar,
   },
 });
 </script>

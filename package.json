@@ -15,6 +15,7 @@
     "graphql-tag": "^2.12.6",
     "marked": "^4.0.18",
     "vue": "^3.2.13",
+    "vue-marquee-text-component": "^2.0.1",
     "vue-router": "^4.0.3",
     "vue3-markdown-it": "^1.0.10"
   },

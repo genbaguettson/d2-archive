@@ -88,7 +88,7 @@ export default {
 .main-container {
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .square-nav-bar {
