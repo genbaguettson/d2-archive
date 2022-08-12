@@ -7,7 +7,6 @@
         class="square-tab"
         :class="{ 'active': activeIndex === index }"
         @click="setActive(index)"
-        v-ripple
       >
         <img :src="tab.iconUrl" :alt="tab.name" class="square-icon"/>
       </div>

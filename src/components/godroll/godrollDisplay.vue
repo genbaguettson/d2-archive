@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
   <div class="roll-display">
     <SectionTitle :title='`${type} Godroll`' />
@@ -7,10 +8,15 @@
       </h2>
       <div class="indicator-display">
         <div
-          v-for="(indicator, index) in roll.contentIndicators"
+          v-for="(indicator, index) in this.contentIndicators"
           :key="index"
         >
-          <img :src="indicator.icon.url" :alt="indicator.name" class="indicator-icon" />
+          <img
+            :src="indicator.icon"
+            :alt="indicator.name"
+            :class="{ 'greyed-out': !hasIndicator(roll, indicator)}"
+            class="indicator-icon"
+          />
         </div>
       </div>
     </div>
@@ -46,29 +52,50 @@ import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
 
 import { marked } from 'marked';
 
+const lowEndIcon = require('@/assets/contentIndicators/contentLowEnd.png');
+const midEndIcon = require('@/assets/contentIndicators/contentMidEnd.png');
+const highEndIcon = require('@/assets/contentIndicators/contentHighEnd.png');
+
 export default {
   props: ['roll', 'type'],
   setup() {
     return {
       // TEMPORARY STATS FOR STAT VIEW
       weaponStats: {
-        Impact: 29,
-        Range: 58,
-        Stability: 46,
-        Handling: 56,
-        'Reload Speed': 54,
-        'Aim Assistance': 38,
-        'Airborne Effectiveness': 17,
-        Zoom: 17,
-        'Rounds Per Minute': 450,
-        Magazine: 44,
-        'Recoil Direction': 61,
+        Impact: 84,
+        Range: 51,
+        Stability: 64,
+        Handling: 49,
+        'Reload Speed': 45,
+        'Aim Assistance': 80,
+        'Airborne Effectiveness': 10,
+        Zoom: 14,
+        'Rounds Per Minute': 140,
+        Magazine: 11,
+        'Recoil Direction': 96,
       },
+      contentIndicators: [
+        {
+          name: 'Low end',
+          icon: lowEndIcon,
+        },
+        {
+          name: 'Midgame',
+          icon: midEndIcon,
+        },
+        {
+          name: 'Endgame',
+          icon: highEndIcon,
+        },
+      ],
     };
   },
   methods: {
     markdownToHtml(markdown) {
       return marked(markdown);
+    },
+    hasIndicator(roll, indicator) {
+      return roll.contentIndicators.find((_indicator) => _indicator.name === indicator.name);
     },
   },
   components: {
@@ -118,6 +145,10 @@ export default {
   padding: 5px;
   display: flex;
   align-items: center;
+}
+
+.indicator-icon.greyed-out {
+  filter: brightness(50%)
 }
 
 .roll-info {

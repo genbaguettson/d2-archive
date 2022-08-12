@@ -1,20 +1,19 @@
 <template>
   <div>
-    <WeaponMainInfo :weapon="weaponData"/>
     <div class="additional-info-box">
       <WeaponStats title="Stats" :stats="weaponStats"/>
       <div class="additional-info-div">
         <WeaponAdditionalInfo
           title="Intrinsic"
-          :text="weaponData.archetype.frame"
-          subtext="I am the Sea"
-          :iconUrl="weaponData.source.soureIcon.url"
+          :text="weapon.archetype.frame"
+          subtext="A well-rounded grip, reliable and sturdy."
+          iconUrl="https://www.bungie.net/common/destiny2_content/icons/ad56b0e83d31592d9984cdf2f392452a.png"
         />
         <WeaponAdditionalInfo
           title="Source"
-          :text="weaponData.source.sourceTitle"
-          subtext="Poop Encounter"
-          :iconUrl="weaponData.source.soureIcon.url"
+          :text="weapon.source.sourceTitle"
+          subtext="Captain Avarokk the Covetous encounter"
+          :iconUrl="weapon.source.soureIcon.url"
         />
       </div>
     </div>
@@ -22,27 +21,26 @@
 </template>
 
 <script>
-import WeaponMainInfo from '@/components/weaponInfo/WeaponMainInfo.vue';
 import WeaponAdditionalInfo from '@/components/weaponInfo/WeaponAdditionalInfo.vue';
 import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
 
 export default {
-  props: ['weaponData'],
+  props: ['weapon'],
   setup() {
     return {
       // TEMPORARY STATS FOR STAT VIEW
       weaponStats: {
-        Impact: 29,
-        Range: 58,
-        Stability: 46,
-        Handling: 56,
-        'Reload Speed': 54,
-        'Aim Assistance': 38,
-        'Airborne Effectiveness': 17,
-        Zoom: 17,
-        'Rounds Per Minute': 450,
-        Magazine: 44,
-        'Recoil Direction': 61,
+        Impact: 84,
+        Range: 51,
+        Stability: 64,
+        Handling: 49,
+        'Reload Speed': 45,
+        'Aim Assistance': 80,
+        'Airborne Effectiveness': 10,
+        Zoom: 14,
+        'Rounds Per Minute': 140,
+        Magazine: 11,
+        'Recoil Direction': 96,
       },
     };
   },
@@ -75,7 +73,6 @@ export default {
     },
   },
   components: {
-    WeaponMainInfo,
     WeaponAdditionalInfo,
     WeaponStats,
   },

@@ -6,7 +6,6 @@
     :class="{ 'active': isActive }"
     @mouseover="isHovered = true"
     @mouseleave="isHovered = false"
-    v-ripple
   >
     <SectionTitle
       :title="roll.title"

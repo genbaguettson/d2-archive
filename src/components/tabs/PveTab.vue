@@ -1,8 +1,8 @@
 <template>
-  <div class="main-div" v-if="weaponData">
+  <div class="main-div" v-if="weapon">
     <GodrollSelect
       v-model="activeIndex"
-      :rolls="weaponData.pveGodrolls"
+      :rolls="weapon.pveGodrolls"
     />
     <GodrollDisplay
       v-if="selectedRoll"
@@ -18,7 +18,7 @@ import GodrollSelect from '@/components/godroll/godrollSelect.vue';
 import GodrollDisplay from '@/components/godroll/godrollDisplay.vue';
 
 export default {
-  props: ['weaponData'],
+  props: ['weapon'],
   data() {
     return {
       activeIndex: 0,
@@ -30,13 +30,14 @@ export default {
     activeIndex(index) {
       this.switchingRoll = true;
       setTimeout(() => {
-        this.selectedRoll = this.weaponData.pveGodrolls[index];
+        this.selectedRoll = this.weapon.pveGodrolls[index];
+        console.log(this.selectedRoll);
         this.switchingRoll = false;
       }, '150');
     },
   },
   mounted() {
-    this.selectedRoll = { ...this.weaponData.pveGodrolls[0] };
+    this.selectedRoll = { ...this.weapon.pveGodrolls[0] };
   },
   components: {
     GodrollSelect,

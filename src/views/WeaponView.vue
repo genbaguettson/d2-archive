@@ -7,7 +7,8 @@
       <SquareDisplay v-model="activeIndex" :tabs="tabs"/>
     </div>
     <div class="tab-display">
-      <component :is="tabs[activeIndex].name" :weaponData="weaponData.weapon"/>
+      <WeaponMainInfo :weapon="weaponData.weapon"/>
+      <component :is="tabs[activeIndex].name" :weapon="weaponData.weapon"/>
     </div>
   </div>
   <div v-else-if="weaponLoading">Loading...</div>
@@ -24,13 +25,15 @@
 import { useQuery } from '@vue/apollo-composable';
 import GET_WEAPON_BY_NAME from '@/data/queries';
 import SquareDisplay from '@/components/layouts/SquareDisplay.vue';
+import WeaponMainInfo from '@/components/weaponInfo/WeaponMainInfo.vue';
 
 import OverviewTab from '@/components/tabs/OverviewTab.vue';
 import PveTab from '@/components/tabs/PveTab.vue';
 import PvpTab from '@/components/tabs/PvpTab.vue';
+import FullscreenTab from '@/components/tabs/FullscreenTab.vue';
 
 const generalIcon = require('@/assets/generalIcon.png');
-const pveIcon = require('@/assets/otherPveIcon.png');
+const pveIcon = require('@/assets/pveIcon.png');
 const pvpIcon = require('@/assets/pvpIcon.png');
 const fullscreenIcon = require('@/assets/fullscreenIcon.png');
 
@@ -44,20 +47,6 @@ export default {
       weaponData: result,
       weaponLoading: loading,
       weaponError: error,
-      // TEMPORARY STATS FOR STAT VIEW
-      weaponStats: {
-        Impact: 29,
-        Range: 58,
-        Stability: 46,
-        Handling: 56,
-        'Reload Speed': 54,
-        'Aim Assistance': 38,
-        'Airborne Effectiveness': 17,
-        Zoom: 17,
-        'Rounds Per Minute': 450,
-        Magazine: 44,
-        'Recoil Direction': 61,
-      },
     };
   },
   data() {
@@ -81,36 +70,15 @@ export default {
           iconUrl: fullscreenIcon,
         },
       ],
-      DMG_IMG_URL: {
-        STASIS: 'https://media.graphassets.com/My7R32nKQ3uF3gUA7JBE',
-        SOLAR: 'https://media.graphassets.com/i2nLrkqVTMyVNOvv06tX',
-        ARC: 'https://media.graphassets.com/1UMeBZYKQpKMVQD9OI4u',
-        KINETIC: 'https://media.graphassets.com/uAfCSEA9Ryi8nCC0HDim',
-        VOID: 'https://media.graphassets.com/eTxoUE78QEuQ4olgnqXd',
-      },
     };
   },
-  methods: {
-    getDamageIcon(elementType) {
-      switch (elementType) {
-        case 'Solar':
-          return this.DMG_IMG_URL.SOLAR;
-        case 'Stasis':
-          return this.DMG_IMG_URL.STASIS;
-        case 'Arc':
-          return this.DMG_IMG_URL.ARC;
-        case 'Void':
-          return this.DMG_IMG_URL.VOID;
-        default:
-          return this.DMG_IMG_URL.KINETIC;
-      }
-    },
-  },
   components: {
+    WeaponMainInfo,
     SquareDisplay,
     OverviewTab,
     PveTab,
     PvpTab,
+    FullscreenTab,
   },
 };
 </script>

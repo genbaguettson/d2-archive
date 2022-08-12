@@ -1,9 +1,9 @@
 <template>
-  <div class="main-div" v-if="weaponData">
+  <div class="main-div" v-if="weapon">
     <div class="roll-select">
       <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
       <div
-        v-for="(roll, index) in weaponData.pvpGodrolls"
+        v-for="(roll, index) in weapon.pvpGodrolls"
         :key="index"
         class="godroll"
         @click="selectRoll(roll)"
@@ -69,7 +69,7 @@ import WeaponStats from '@/components/weaponInfo/WeaponStats.vue';
 import { marked } from 'marked';
 
 export default {
-  props: ['weaponData'],
+  props: ['weapon'],
   setup() {
     return {
       // TEMPORARY STATS FOR STAT VIEW
@@ -102,8 +102,8 @@ export default {
     },
   },
   mounted() {
-    if (this.weaponData.pvpGodrolls) {
-      this.selectRoll(this.weaponData.pvpGodrolls[0]);
+    if (this.weapon.pvpGodrolls) {
+      this.selectRoll(this.weapon.pvpGodrolls[0]);
     }
   },
   components: {

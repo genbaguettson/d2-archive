@@ -10,10 +10,10 @@
         />
       <div class="main-info-box">
         <h2 class="weapon-name">
-          Mall Ninja Katana
+          {{ weapon.name }}
         </h2>
         <p class="weapon-type">
-          Slugger
+          {{ weapon.archetype.title }} RPM
         </p>
       </div>
       <div class="additional-info-container">
@@ -32,8 +32,8 @@
         <div class="additional-info-box">
           <img
             class="additional-info-icon"
-            src="https://www.svgrepo.com/show/358797/ammo-special.svg"
-            alt="this is the ammo picture"
+            :src="ammoPrimary"
+            alt="ammo type"
           />
           <p class="additional-info-text">
             Ammo Type
@@ -45,15 +45,13 @@
 </template>
 
 <script>
-
 import SectionTitle from '../layouts/SectionTitle.vue';
+
+// eslint-disable-next-line no-unused-vars
+const ammoPrimary = require('@/assets/ammoPrimary.png');
 
 export default {
   props: ['weapon'],
-  setup() {
-    return {
-    };
-  },
   data() {
     return {
       DMG_IMG_URL: {
@@ -63,6 +61,7 @@ export default {
         KINETIC: 'https://media.graphassets.com/uAfCSEA9Ryi8nCC0HDim',
         VOID: 'https://media.graphassets.com/eTxoUE78QEuQ4olgnqXd',
       },
+      ammoPrimary,
     };
   },
   methods: {

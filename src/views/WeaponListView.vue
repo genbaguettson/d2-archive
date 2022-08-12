@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { useQuery } from "@vue/apollo-composable";
-import gql from "graphql-tag";
+import { useQuery } from '@vue/apollo-composable';
+import gql from 'graphql-tag';
 
 export default {
   setup() {
